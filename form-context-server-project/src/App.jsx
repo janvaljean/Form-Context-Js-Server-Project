@@ -4,11 +4,15 @@ import TaskCreate from './components/TaskCreate'
 import TaskList from './components/TaskList'
 
 function App() {
-  
+    const createTask = (header, task) => {
+     console.log(header,task)
+     
+    };
+
 
   return (
     <div className="App">
-      <TaskCreate/>
+      <TaskCreate onCreate={createTask}/>
       <TaskList/>
     </div>
   )
