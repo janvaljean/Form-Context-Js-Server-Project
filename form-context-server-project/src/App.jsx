@@ -16,10 +16,11 @@ function App() {
     ];
     setTasks(createdTasks);
   };
-  
+
   return (
     <div className="App">
       <TaskCreate onCreate={createTask} />
+      {/* //!prop lifting up */}
       <TaskList tasks={tasks} />
     </div>
   );

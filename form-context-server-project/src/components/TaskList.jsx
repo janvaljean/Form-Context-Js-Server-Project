@@ -3,7 +3,7 @@ import TaskCard from "./TaskCard";
 
 const TaskList = ({ tasks }) => {
   return (
-    <div>
+    <div className="taskList">
       {tasks.map((task) => (
         <TaskCard key={task.id} task={task} />
       ))}

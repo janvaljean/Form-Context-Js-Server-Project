@@ -14,9 +14,9 @@ const TaskCreate = ({onCreate}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onCreate(header, task);
-    setTask("")
-    setHeader("")
+    onCreate(header, task); //!prop lifting up
+    setTask("");
+    setHeader("");
   };
 
   return (
