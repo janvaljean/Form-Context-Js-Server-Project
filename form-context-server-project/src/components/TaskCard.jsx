@@ -1,6 +1,10 @@
 import React from "react";
 
-const TaskCard = ({ task }) => {
+const TaskCard = ({ task, onDelete }) => {
+  const handleDelete = () => {
+    onDelete(task.id);
+  };
+
   console.log(task);
   return (
     <div className="card">
@@ -10,7 +14,9 @@ const TaskCard = ({ task }) => {
       <p className="cardInfo">{task.task}</p>
       <div className="buttonContainer">
         <button className="editButton">Edit</button>
-        <button className="deleteButton">Delete</button>
+        <button onClick={handleDelete} className="deleteButton">
+          Delete
+        </button>
       </div>
     </div>
   );
