@@ -4,31 +4,49 @@ import TaskCreate from "./components/TaskCreate";
 import TaskList from "./components/TaskList";
 
 function App() {
+  
   const [tasks, setTasks] = useState([]);
+
   const createTask = (header, task) => {
-    const createdTasks = [
+    setTasks([
       ...tasks,
       {
         id: new Date().getMilliseconds(),
         header,
         task,
       },
-    ];
-    setTasks(createdTasks);
+    ]);
   };
+
   const deleteTaskById = (id) => {
     //! id lifting up
-    //console.log(id);
+
     const filteredTasks = tasks.filter((task) => task.id !== id);
-    //console.log(filteredTasks)
+
     setTasks(filteredTasks);
+  };
+
+  const editTaskById = (id, header, taskDesc) => {
+    //! id lifting up
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === id) {
+        return { id, header: header, task: taskDesc };
+      }
+      return task;
+    });
+
+    setTasks(updatedTasks);
   };
 
   return (
     <div className="App">
-      <TaskCreate onCreate={createTask} />
+      <TaskCreate createTask={createTask} />
       {/* //!prop lifting up */}
-      <TaskList tasks={tasks} onDelete={deleteTaskById} />
+      <TaskList
+        tasks={tasks}
+        deleteTaskById={deleteTaskById}
+        editTaskById={editTaskById}
+      />
     </div>
   );
 }

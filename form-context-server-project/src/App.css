@@ -2,22 +2,34 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
 }
 .taskCreaterForm {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+ 
 }
 
 .taskCreateContainer {
   width: 450px;
 }
-.header {
-  text-align: center;
+.taskUpdateContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  
 }
+
 .taskInput {
   padding: 10px;
-  border: 1px solid black;
-  border-radius: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    
 }
 .taskButton {
   padding: 10px;
@@ -34,11 +46,11 @@
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  width: 30%;
   justify-content: center;
   align-items: center;
   margin: 12px;
   height: 30vh;
+  width: 300px;
 }
 
 .taskList {
@@ -74,7 +86,20 @@
   margin: 4px;
   padding: 4px;
   border-radius: 8px;
-  width: 80%;
+  width: 60%;
   text-align: center;
   overflow: auto;
+  
+}
+.taskLabel{
+  font-weight: bold;
+  margin: 2px;
+}
+.updateButton{
+  padding: 4px;
+  width: 60%;
+  background-color: orange;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 4px;
 }

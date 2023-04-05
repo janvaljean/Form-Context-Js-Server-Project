@@ -1,24 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
+import TaskCreate from "./TaskCreate";
 
-const TaskCard = ({ task, onDelete }) => {
+const TaskCard = ({ task, deleteTaskById, editTaskById }) => {
+  const [update, setUpdate] = useState(false);
+
   const handleDelete = () => {
-    onDelete(task.id);
+    deleteTaskById(task.id);
   };
 
-  console.log(task);
+  const handleEdit = () => {
+    setUpdate(!update);
+  };
+
+  const handleSubmit = (id, header, taskDesc) => {
+    setUpdate(false);
+    editTaskById(id, header, taskDesc);
+  };
+
   return (
-    <div className="card">
-      <h3 className="cardHeader">Your Task</h3>
-      <p className="cardInfo">{task.header}</p>
-      <h3 className="cardHeader">Task Details</h3>
-      <p className="cardInfo">{task.task}</p>
-      <div className="buttonContainer">
-        <button className="editButton">Edit</button>
-        <button onClick={handleDelete} className="deleteButton">
-          Delete
-        </button>
+    <>
+      <div className="card">
+        {update ? (
+          <TaskCreate
+            task={task}
+            taskFormUpdate={true}
+            editTaskById={handleSubmit}
+          />
+        ) : (
+          <div>
+            <h3 className="cardHeader">Your Task</h3>
+            <p className="cardInfo">{task.header}</p>
+            <h3 className="cardHeader">Task Details</h3>
+            <p className="cardInfo">{task.task}</p>
+            <div className="buttonContainer">
+              <button onClick={handleEdit} className="editButton">
+                Edit
+              </button>
+              <button onClick={handleDelete} className="deleteButton">
+                Delete
+              </button>
+            </div>
+          </div>
+        )}
       </div>
-    </div>
+    </>
   );
 };
 
