@@ -16,7 +16,7 @@ function App() {
     ];
     setTasks(createdTasks);
   };
-  console.log(tasks);
+  
   return (
     <div className="App">
       <TaskCreate onCreate={createTask} />

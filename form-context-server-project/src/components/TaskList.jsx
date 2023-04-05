@@ -1,11 +1,14 @@
-import React from 'react'
+import React from "react";
+import TaskCard from "./TaskCard";
 
-const TaskList = () => {
+const TaskList = ({ tasks }) => {
   return (
     <div>
-      
+      {tasks.map((task) => (
+        <TaskCard key={task.id} task={task} />
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default TaskList
+export default TaskList;
