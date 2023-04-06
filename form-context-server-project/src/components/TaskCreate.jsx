@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
+import TasksContext from "../context/task";
 
-const TaskCreate = ({ createTask, task, taskFormUpdate, editTaskById }) => {
+const TaskCreate = ({ task, taskFormUpdate, onUpdate }) => {
+  const { createTask } = useContext(TasksContext);
   const [taskDesc, setTaskDesc] = useState(task ? task.task : "");
   const [header, setHeader] = useState(task ? task.header : "");
 
@@ -15,10 +17,10 @@ const TaskCreate = ({ createTask, task, taskFormUpdate, editTaskById }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (taskFormUpdate) {
-      editTaskById(task.id, header, taskDesc);
+      onUpdate(task?.id, header, taskDesc);
     } else {
       createTask(header, taskDesc);
-    } //!prop lifting up
+    }
     setTaskDesc("");
     setHeader("");
   };

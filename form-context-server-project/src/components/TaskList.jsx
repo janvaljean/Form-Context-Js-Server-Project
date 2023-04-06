@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import TaskCard from "./TaskCard";
+import TasksContext from "../context/task";
 
-const TaskList = ({ tasks, deleteTaskById, editTaskById }) => {
+
+const TaskList = () => {
+   const { tasks } = useContext(TasksContext);
+  
   return (
     <div className="taskList">
       {tasks.map((task) => (
         <TaskCard
           key={task.id}
           task={task}
-          deleteTaskById={deleteTaskById}
-          editTaskById={editTaskById}
+          
         />
       ))}
     </div>

@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import TaskCreate from "./TaskCreate";
+import TasksContext from "../context/task";
 
-const TaskCard = ({ task, deleteTaskById, editTaskById }) => {
+const TaskCard = ({ task, onUpdate }) => {
+  const { deleteTaskById, editTaskById } = useContext(TasksContext);
   const [update, setUpdate] = useState(false);
 
   const handleDelete = () => {
@@ -24,7 +26,7 @@ const TaskCard = ({ task, deleteTaskById, editTaskById }) => {
           <TaskCreate
             task={task}
             taskFormUpdate={true}
-            editTaskById={handleSubmit}
+            onUpdate={handleSubmit}
           />
         ) : (
           <div>

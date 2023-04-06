@@ -1,52 +1,21 @@
-import { useState } from "react";
 import "./App.css";
 import TaskCreate from "./components/TaskCreate";
 import TaskList from "./components/TaskList";
 
+import { useEffect, useContext } from "react";
+import TasksContext, { Provider } from "./context/task";
+
 function App() {
-  
-  const [tasks, setTasks] = useState([]);
+  const { fetchTasks } = useContext(TasksContext);
 
-  const createTask = (header, task) => {
-    setTasks([
-      ...tasks,
-      {
-        id: new Date().getMilliseconds(),
-        header,
-        task,
-      },
-    ]);
-  };
-
-  const deleteTaskById = (id) => {
-    //! id lifting up
-
-    const filteredTasks = tasks.filter((task) => task.id !== id);
-
-    setTasks(filteredTasks);
-  };
-
-  const editTaskById = (id, header, taskDesc) => {
-    //! id lifting up
-    const updatedTasks = tasks.map((task) => {
-      if (task.id === id) {
-        return { id, header: header, task: taskDesc };
-      }
-      return task;
-    });
-
-    setTasks(updatedTasks);
-  };
+  useEffect(() => {
+    fetchTasks();
+  }, []);
 
   return (
     <div className="App">
-      <TaskCreate createTask={createTask} />
-      {/* //!prop lifting up */}
-      <TaskList
-        tasks={tasks}
-        deleteTaskById={deleteTaskById}
-        editTaskById={editTaskById}
-      />
+        <TaskCreate />
+        <TaskList />
     </div>
   );
 }
